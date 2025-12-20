@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  room: one
+  index: 1
+  current_color: MyString
+  angle: 1
+
+two:
+  room: two
+  index: 1
+  current_color: MyString
+  angle: 1
