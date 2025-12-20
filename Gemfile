@@ -20,6 +20,13 @@ gem "thruster", require: false
 
 gem "image_processing", "~> 1.2"
 
+gem "devise"
+gem "devise_token_auth"
+gem "rack-cors"
+
+group :development do
+  gem "letter_opener_web", "~> 2.0"
+end
 
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"

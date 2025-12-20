@@ -1,18 +1,10 @@
-version: "3.8"
-
 services:
-  mysql:
+  db:
     image: mysql:8.0
     container_name: music-mysql
+    # 認証プラグインを指定して起動
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: password  # ← 念のためこれに固定
     ports:
       - "3306:3306"
-    environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: music
-      MYSQL_USER: user
-      MYSQL_PASSWORD: password
-    volumes:
-      - mysql_data:/var/lib/mysql
-
-volumes:
-  mysql_data:
