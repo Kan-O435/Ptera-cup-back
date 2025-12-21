@@ -1,10 +1,17 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  # Devise Token Auth 用ルーティング
+  mount_devise_token_auth_for "User", at: "auth", controllers: {
+    registrations: "auth/registrations"
+  }
 
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
-  get "up" => "rails/health#show", as: :rails_health_check
+  # letter_opener（開発環境のみ）
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
 
-  # Defines the root path route ("/")
-  # root "posts#index"
+  # Rooms 用ルーティング
+  resources :rooms, only: [:create] do
+    # /rooms/:id/join に POST
+    post :join, on: :member
+  end
 end
