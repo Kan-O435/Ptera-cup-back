@@ -14,4 +14,13 @@ Rails.application.routes.draw do
     # /rooms/:id/join に POST
     post :join, on: :member
   end
+
+  # QRコードやブラウザ直接アクセス用に GET /room/:id を Next.js へリダイレクト
+  get '/room/:id', to: redirect("https://unstaggering-nonresidential-adelle.ngrok-free.dev/room/%{id}")
+
+  # Stage ペンライト操作用 Webhook
+  post '/stage/update', to: 'stage#update'
+
+  # ActionCable 用 WebSocket
+  mount ActionCable.server => '/cable'
 end
